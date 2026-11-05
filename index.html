@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTTPSrrsp.app-安全访问入口_HTTPSrrsp.app 使用指南与访问说明_站点导航</title>
+<meta name="description" content="HTTPSrrsp.app 是面向访问者的 HTTPS 安全访问入口说明页，整理 HTTPSrrsp.app 的访问方式、连接安全要点、常见问题与使用建议，帮助你在浏览器中顺利完成 HTTPSrrsp.app 的访问与日常使用。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b2b4a'/%3E%3Cpath d='M32 12l14 6v12c0 10-6 17-14 22-8-5-14-12-14-22V18z' fill='none' stroke='%2334d399' stroke-width='3.5'/%3E%3Cpath d='M25 32l5 5 10-11' fill='none' stroke='%2334d399' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --navy:#0b2b4a;
+  --navy-deep:#071d33;
+  --teal:#34d399;
+  --teal-dark:#0f9d76;
+  --ink:#132433;
+  --muted:#5b6d7c;
+  --line:#dbe5ec;
+  --bg:#f5f8fa;
+  --white:#ffffff;
+  --radius:14px;
+  --max:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block;max-width:100%;}
+a{color:var(--teal-dark);text-decoration:none;}
+a:hover{text-decoration:underline;}
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 22px;}
+
+/* ---------- header ---------- */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(7,29,51,.96);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(52,211,153,.22);
+}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:18px;min-height:66px;
+}
+.logo{
+  display:flex;align-items:center;gap:10px;
+  color:var(--white);font-weight:700;font-size:17px;letter-spacing:.2px;
+  white-space:nowrap;
+}
+.logo:hover{text-decoration:none;color:var(--teal);}
+.logo-mark{
+  width:34px;height:34px;flex:0 0 34px;border-radius:9px;
+  background:linear-gradient(150deg,#12507a,#0f9d76);
+  display:grid;place-items:center;
+}
+.logo-mark svg{width:21px;height:21px;}
+.nav{display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.nav a{
+  color:#c6d8e5;font-size:14.5px;padding:7px 11px;border-radius:8px;
+  transition:background .18s,color .18s;white-space:nowrap;
+}
+.nav a:hover{background:rgba(52,211,153,.14);color:#fff;text-decoration:none;}
+.nav a.cta{
+  background:var(--teal);color:var(--navy-deep);font-weight:600;
+}
+.nav a.cta:hover{background:#5ee7b4;color:var(--navy-deep);}
+.nav-toggle{
+  display:none;background:none;border:1px solid rgba(198,216,229,.4);
+  color:#dbe9f3;border-radius:8px;padding:6px 10px;font-size:14px;cursor:pointer;
+}
+
+/* ---------- hero ---------- */
+.hero{
+  background:
+    radial-gradient(circle at 82% 18%,rgba(52,211,153,.20),transparent 55%),
+    linear-gradient(160deg,#0b2b4a 0%,#0a3a57 55%,#0c4b5e 100%);
+  color:#e9f4fb;
+  padding:58px 0 62px;
+  overflow:hidden;
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;letter-spacing:1.2px;text-transform:uppercase;
+  color:#8fe9c6;border:1px solid rgba(52,211,153,.45);
+  border-radius:999px;padding:4px 13px;margin-bottom:18px;
+}
+.eyebrow span.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);}
+.hero h1{
+  font-size:clamp(28px,4.6vw,46px);
+  line-height:1.2;font-weight:800;letter-spacing:-.5px;
+  color:#fff;word-break:break-word;
+}
+.hero p.lead{
+  margin-top:18px;font-size:16.5px;color:#bcd4e4;max-width:560px;
+}
+.hero-actions{
+  margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 22px;border-radius:10px;font-size:15.5px;font-weight:600;
+  border:1px solid transparent;transition:transform .15s,background .18s;
+  cursor:pointer;
+}
+.btn:hover{text-decoration:none;transform:translateY(-1px);}
+.btn-primary{background:var(--teal);color:var(--navy-deep);}
+.btn-primary:hover{background:#5ee7b4;}
+.btn-ghost{background:transparent;color:#dceaf4;border-color:rgba(220,234,244,.38);}
+.btn-ghost:hover{background:rgba(220,234,244,.1);}
+.hero-note{margin-top:16px;font-size:13.5px;color:#8fadc2;}
+.hero-visual{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(52,211,153,.3);
+  border-radius:18px;padding:22px;
+}
+.hero-visual h3{
+  font-size:14px;color:#8fe9c6;font-weight:600;letter-spacing:.6px;margin-bottom:14px;
+}
+.check-list{list-style:none;display:grid;gap:11px;}
+.check-list li{
+  display:flex;gap:10px;align-items:flex-start;
+  font-size:14.5px;color:#cfe2ee;line-height:1.6;
+}
+.check-list svg{flex:0 0 18px;width:18px;height:18px;margin-top:3px;}
+
+/* ---------- sections ---------- */
+section{padding:62px 0;}
+.section-head{max-width:720px;margin-bottom:34px;}
+.section-tag{
+  font-size:13px;font-weight:600;letter-spacing:1.4px;color:var(--teal-dark);
+  text-transform:uppercase;margin-bottom:10px;display:block;
+}
+h2{
+  font-size:clamp(22px,2.8vw,30px);line-height:1.3;font-weight:800;
+  color:var(--navy);letter-spacing:-.3px;
+}
+.section-head p{margin-top:12px;color:var(--muted);font-size:15.5px;}
+.alt{background:var(--white);}
+
+.cards{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.card{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 22px;
+  display:flex;flex-direction:column;gap:10px;
+  transition:box-shadow .2s,transform .2s,border-color .2s;
+}
+.alt .card{background:var(--bg);}
+.card:hover{box-shadow:0 10px 26px rgba(11,43,74,.08);transform:translateY(-2px);border-color:#b9d7cd;}
+.card-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:rgba(52,211,153,.14);display:grid;place-items:center;
+  margin-bottom:4px;
+}
+.card-icon svg{width:21px;height:21px;}
+.card h3{font-size:17px;font-weight:700;color:var(--navy);}
+.card p{font-size:14.5px;color:var(--muted);line-height:1.7;}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:step;}
+.step{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 22px 22px;position:relative;
+}
+.step::before{
+  counter-increment:step;content:counter(step,decimal-leading-zero);
+  font-size:13px;font-weight:800;letter-spacing:1px;color:var(--teal-dark);
+  display:block;margin-bottom:10px;
+}
+.step h3{font-size:16.5px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.step p{font-size:14.5px;color:var(--muted);}
+
+/* article + aside */
+.split{display:grid;grid-template-columns:1.6fr .9fr;gap:34px;align-items:start;}
+.prose h3{
+  font-size:18px;font-weight:700;color:var(--navy);margin:26px 0 10px;
+}
+.prose h3:first-child{margin-top:0;}
+.prose p{font-size:15.5px;color:#31485a;margin-bottom:12px;}
+.prose ul{margin:0 0 14px 20px;}
+.prose li{font-size:15.5px;color:#31485a;margin-bottom:7px;}
+.aside-box{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 22px;position:sticky;top:86px;
+}
+.aside-box h3{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:14px;}
+.fact-list{list-style:none;display:grid;gap:14px;}
+.fact-list li{
+  display:flex;justify-content:space-between;gap:12px;
+  padding-bottom:12px;border-bottom:1px dashed var(--line);
+  font-size:14.5px;
+}
+.fact-list li:last-child{border-bottom:none;padding-bottom:0;}
+.fact-list .k{color:var(--muted);flex:0 0 auto;}
+.fact-list .v{color:var(--navy);font-weight:600;text-align:right;}
+
+/* faq */
+.faq{display:grid;gap:12px;max-width:860px;}
+details{
+  background:var(--white);border:1px solid var(--line);border-radius:12px;
+  padding:16px 20px;
+}
+details[open]{border-color:#b9d7cd;box-shadow:0 6px 18px rgba(11,43,74,.05);}
+summary{
+  cursor:pointer;font-weight:700;font-size:15.5px;color:var(--navy);
+  list-style:none;display:flex;justify-content:space-between;gap:14px;align-items:center;
+}
+summary::-webkit-details-marker{display:none;}
+summary::after{
+  content:"+";font-size:20px;font-weight:600;color:var(--teal-dark);line-height:1;
+}
+details[open] summary::after{content:"−";}
+details p{margin-top:10px;font-size:14.8px;color:var(--muted);}
+
+/* download */
+.download{
+  background:linear-gradient(160deg,#0b2b4a,#0c4b5e);
+  color:#e6f2fa;border-radius:18px;padding:38px 34px;
+  display:grid;grid-template-columns:1.4fr .6fr;gap:26px;align-items:center;
+}
+.download h2{color:#fff;}
+.download p{margin-top:10px;color:#b9d2e1;font-size:15px;max-width:560px;}
+.download .btn[aria-disabled="true"]{
+  background:var(--teal);color:var(--navy-deep);
+  pointer-events:none;opacity:.92;
+}
+.download-side{display:flex;justify-content:flex-end;}
+
+/* footer */
+.site-footer{
+  background:var(--navy-deep);color:#9fb8c9;padding:44px 0 26px;font-size:14px;
+}
+.footer-grid{display:grid;grid-template-columns:1.4fr .8fr .8fr;gap:30px;}
+.site-footer h4{color:#fff;font-size:15px;margin-bottom:12px;font-weight:700;}
+.site-footer a{color:#9fb8c9;}
+.site-footer a:hover{color:var(--teal);}
+.footer-links{list-style:none;display:grid;gap:8px;}
+.footer-brand{
+  display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;
+  font-size:16px;margin-bottom:12px;
+}
+.footer-bottom{
+  margin-top:32px;padding-top:18px;border-top:1px solid rgba(159,184,201,.2);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px;color:#7e9aad;
+}
+
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:30px;}
+  .cards,.steps{grid-template-columns:1fr 1fr;}
+  .split{grid-template-columns:1fr;}
+  .aside-box{position:static;}
+  .download{grid-template-columns:1fr;}
+  .download-side{justify-content:flex-start;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:680px){
+  .nav-toggle{display:inline-block;}
+  .nav{
+    display:none;position:absolute;left:0;right:0;top:100%;
+    background:var(--navy-deep);border-bottom:1px solid rgba(52,211,153,.25);
+    padding:12px 18px 18px;flex-direction:column;align-items:stretch;gap:4px;
+  }
+  .nav.open{display:flex;}
+  .nav a{padding:10px 12px;font-size:15px;}
+  .header-inner{position:relative;}
+  .hero{padding:40px 0 44px;}
+  .cards,.steps{grid-template-columns:1fr;}
+  section{padding:46px 0;}
+  .download{padding:28px 22px;}
+  .footer-grid{grid-template-columns:1fr;}
+  .fact-list li{flex-direction:column;gap:2px;}
+  .fact-list .v{text-align:left;}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="#top" aria-label="HTTPSrrsp.app 首页">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#e9fdf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l7 3v6c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6z"></path>
+          <path d="M9 12l2 2 4-4"></path>
+        </svg>
+      </span>
+      <span>HTTPSrrsp.app</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false">菜单</button>
+    <nav class="nav" id="site-nav" aria-label="主导航">
+      <a href="#overview">站点概览</a>
+      <a href="#access">访问方式</a>
+      <a href="#security">安全要点</a>
+      <a href="#faq">常见问题</a>
+      <a class="cta" href="#access">开始访问</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>HTTPS 安全访问入口</span>
+        <h1 id="hero-title">HTTPSrrsp.app</h1>
+        <p class="lead">HTTPSrrsp.app 是一个以 HTTPS 加密连接为基本特征的访问入口说明页。本页整理 HTTSrrsp.app 的访问方式、连接识别方法与日常使用要点，帮助你在浏览器中准确找到入口、确认连接状态，并养成稳定的访问习惯。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#access">查看访问方式
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+          </a>
+          <a class="btn btn-ghost" href="#security">了解安全要点</a>
+        </div>
+        <p class="hero-note">建议使用新版 Chrome、Edge、Firefox 或 Safari 浏览器访问 HTTPSrrsp.app。</p>
+      </div>
+      <aside class="hero-visual" aria-label="访问前检查清单">
+        <h3>访问前快速检查</h3>
+        <ul class="check-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"></path></svg>
+            地址栏显示 https:// 与锁形标识
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"></path></svg>
+            域名拼写与 HTTPSrrsp.app 完全一致
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"></path></svg>
+            浏览器与系统保持最近更新
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"></path></svg>
+            公共设备上访问后及时退出
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section id="overview" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-tag">站点概览</span>
+        <h2>HTTPSrrsp.app 是什么，适合谁访问</h2>
+        <p>HTTPSrrsp.app 的核心信息只有一条：通过 HTTPS 协议访问一个以域名命名的入口。页面围绕这一条主线，把访问前、访问中、访问后需要确认的信息分开说明，避免把不同环节的要点混在一起。</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0f9d76" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a15 15 0 010 18a15 15 0 010-18z"></path></svg>
+          </div>
+          <h3>以域名为入口</h3>
+          <p>HTTPSrrsp.app 本身是一个域名形式的访问地址，用户在浏览器地址栏输入后即可发起请求。页面不额外引入中间跳转说明，重点放在如何正确输入与识别该域名。</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0f9d76" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 018 0v3"></path></svg>
+          </div>
+          <h3>HTTPS 优先</h3>
+          <p>域名前缀 HTTPS 表明该入口以加密传输为默认方式。访问 HTTPSrrsp.app 时，地址栏的锁形标识与协议前缀是最直接的判断依据，出现证书警告时应先停止操作。</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0f9d76" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"></path><path d="M6 16l6-6 6 6"></path></svg>
+          </div>
+          <h3>面向普通访问者</h3>
+          <p>本页面向需要确认 HTTPSrrsp.app 访问方式、安全状态与常见问题的普通用户，不涉及开发接口或后台配置，内容以浏览器端可见的信息为准。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESS -->
+  <section id="access">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-tag">访问方式</span>
+        <h2>访问 HTTPSrrsp.app 的三个步骤</h2>
+        <p>访问流程本身很短，关键在于每一步是否完成确认。按顺序执行下面的步骤，可以让 HTTPSrrsp.app 的访问过程更可控。</p>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <h3>输入完整域名</h3>
+          <p>在浏览器地址栏手动输入 HTTPSrrsp.app，注意双写字母 r 与结尾的 .app 后缀，避免因拼写偏差进入无关页面。建议直接输入而非点击来源不明的链接。</p>
+        </article>
+        <article class="step">
+          <h3>确认连接状态</h3>
+          <p>页面加载后查看地址栏左侧标识：正常加密连接会显示锁形图标，协议为 https。若浏览器提示证书错误或连接不安全，应关闭页面并核对域名。</p>
+        </article>
+        <article class="step">
+          <h3>完成访问并收尾</h3>
+          <p>访问结束后，如在公共或共享设备上操作，应清除浏览记录并退出相关登录状态，避免他人通过历史记录再次打开 HTTPSrrsp.app。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECURITY -->
+  <section id="security" class="alt">
+    <div class="wrap">
+      <div class="split">
+        <div class="prose">
+          <h3>HTTPS 加密连接意味着什么</h3>
+          <p>HTTPS 在 HTTP 之上加入传输层加密，浏览器与服务器之间的数据在传输过程中以密文形式存在。对 HTTPSrrsp.app 而言，这意味着地址栏中的协议前缀与证书状态是判断连接真实性的第一手依据，而不是页面上任何文字说明。</p>
+          <p>需要注意，加密只保证传输环节的完整与保密，并不等同于对站点内容的背书。访问 HTTPSrrsp.app 时，仍应结合域名拼写、证书颁发信息与自身使用场景综合判断。</p>
+
+          <h3>识别证书与域名异常</h3>
+          <p>浏览器在证书过期、域名不匹配或颁发机构不受信任时，会显示明显的警告页。这类提示不应被忽略，也不建议通过“继续访问”绕过。遇到此类情况，更稳妥的做法是核对 HTTPSrrsp.app 的拼写，换用其他网络或设备重试。</p>
+          <ul>
+            <li>检查地址栏域名是否为 HTTPSrrsp.app，警惕多字母、少字母或换成其他后缀的近似域名。</li>
+            <li>确认协议为 https，而非 http 或带有异常参数的跳转地址。</li>
+            <li>不向页面提交与访问目的无关的敏感信息。</li>
+          </ul>
+
+          <h3>日常使用中的稳定习惯</h3>
+          <p>把 HTTPSrrsp.app 加入浏览器书签，可以减少每次手动输入的出错概率；同时保持浏览器与操作系统更新，使证书校验与安全策略处于较新状态。在公共 Wi-Fi 环境下访问时，优先确认网络来源可信，再打开 HTTPSrrsp.app。</p>
+        </div>
+        <aside class="aside-box" aria-label="访问要点速览">
+          <h3>访问要点速览</h3>
+          <ul class="fact-list">
+            <li><span class="k">入口形式</span><span class="v">域名直访</span></li>
+            <li><span class="k">传输协议</span><span class="v">HTTPS</span></li>
+            <li><span class="k">判断依据</span><span class="v">锁形标识 + 域名</span></li>
+            <li><span class="k">推荐浏览器</span><span class="v">Chrome / Edge / Firefox / Safari</span></li>
+            <li><span class="k">异常处理</span><span class="v">停止访问并核对域名</span></li>
+            <li><span class="k">公共设备</span><span class="v">清除记录后离开</span></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-tag">常见问题</span>
+        <h2>关于 HTTPSrrsp.app 的常见疑问</h2>
+        <p>以下问题围绕访问过程中最常遇到的情况整理，回答以浏览器可见信息与通用安全常识为依据。</p>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>HTTPSrrsp.app 打不开怎么办？</summary>
+          <p>先确认域名拼写是否完整，再检查当前网络是否正常。可以尝试更换浏览器或网络环境重新访问 HTTPSrrsp.app。若浏览器给出证书相关警告，请不要强行跳过，而是核对域名与系统时间是否正确。</p>
+        </details>
+        <details>
+          <summary>地址栏没有锁形标识是否正常？</summary>
+          <p>不正常。以 HTTPS 为前缀的入口在正常加密连接下应显示锁形标识。若访问 HTTPSrrsp.app 时缺失该标识或提示“不安全”，说明连接状态异常，建议停止输入任何信息并重新核对地址。</p>
+        </details>
+        <details>
+          <summary>可以通过搜索引擎结果进入 HTTPSrrsp.app 吗？</summary>
+          <p>可以，但进入后仍应核对地址栏中的域名是否为 HTTPSrrsp.app。搜索结果中的链接文本与实际跳转地址可能不一致，以地址栏显示为准更可靠。</p>
+        </details>
+        <details>
+          <summary>在手机上访问 HTTPSrrsp.app 需要注意什么？</summary>
+          <p>移动端浏览器同样会显示协议与锁形标识，位置通常在地址栏左侧。小屏下地址栏可能折叠，可点击地址栏展开后确认完整域名，再继续操作。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section>
+    <div class="wrap">
+      <div class="download">
+        <div>
+          <h2>获取 HTTPSrrsp.app 访问说明</h2>
+          <p>整理好的访问要点文档，包含域名核对清单、连接状态判断方法与常见问题速查，方便离线查看或在团队内传阅。HTTPSrrsp.app 的访问方式如后续调整，将以本页说明为准。</p>
+        </div>
+        <div class="download-side">
+          <a class="btn" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#e9fdf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l7 3v6c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6z"></path>
+              <path d="M9 12l2 2 4-4"></path>
+            </svg>
+          </span>
+          HTTPSrrsp.app
+        </div>
+        <p>HTTPSrrsp.app 访问说明页，围绕域名入口、HTTPS 连接判断与日常使用习惯整理内容，帮助访问者更稳妥地完成每一次访问。</p>
+      </div>
+      <div>
+        <h4>页面导航</h4>
+        <ul class="footer-links">
+          <li><a href="#overview">站点概览</a></li>
+          <li><a href="#access">访问方式</a></li>
+          <li><a href="#security">安全要点</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>访问提示</h4>
+        <ul class="footer-links">
+          <li><a href="#security">识别 HTTPS 连接</a></li>
+          <li><a href="#access">核对域名拼写</a></li>
+          <li><a href="#faq">处理打不开的情况</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>HTTPSrrsp.app · 访问说明首页</span>
+      <span>内容以浏览器端可见信息与通用安全常识为依据</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var toggle = document.querySelector('.nav-toggle');
+  var nav = document.getElementById('site-nav');
+  if(!toggle || !nav) return;
+  toggle.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.addEventListener('click', function(e){
+    if(e.target.tagName === 'A' && nav.classList.contains('open')){
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+    }
+  });
+})();
+</script>
+</body>
+</html>
