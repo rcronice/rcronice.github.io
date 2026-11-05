@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>91短剧网页版-在线追短剧_短剧大全免费观看_热门短剧推荐</title>
+<meta name="description" content="91短剧网页版是面向短剧爱好者的在线观看入口，整理都市、甜宠、逆袭、悬疑等热门短剧分类，提供剧集速览、榜单推荐与在线播放路径，打开浏览器即可浏览短剧内容。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2319152b'/%3E%3Crect x='14' y='18' width='24' height='28' rx='3' fill='%23ff4d6d'/%3E%3Cpath d='M42 22l10 10-10 10z' fill='%23ffd166'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#19152b;
+    --ink-2:#2a2440;
+    --paper:#fbf9f6;
+    --card:#ffffff;
+    --line:#e8e2da;
+    --accent:#ff4d6d;
+    --accent-2:#ffd166;
+    --muted:#6c6577;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px;}
+
+  /* Header */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,249,246,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .head-inner{
+    display:flex;align-items:center;gap:24px;
+    min-height:66px;flex-wrap:wrap;
+  }
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:.5px;}
+  .logo .mark{
+    width:36px;height:36px;border-radius:11px;background:var(--ink);
+    display:grid;place-items:center;flex:0 0 auto;
+  }
+  .logo .mark svg{width:20px;height:20px;}
+  nav.main{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;}
+  nav.main a{
+    font-size:14px;color:var(--muted);padding:7px 12px;border-radius:999px;
+    transition:.2s;
+  }
+  nav.main a:hover{background:#fff;color:var(--ink);box-shadow:0 1px 0 var(--line);}
+  .nav-cta{
+    background:var(--ink);color:#fff !important;font-weight:600;
+  }
+  .nav-cta:hover{background:var(--accent) !important;}
+
+  /* Hero */
+  .hero{
+    padding:56px 0 44px;
+    background:
+      radial-gradient(700px 300px at 85% 0%,#ffe9ee 0%,transparent 70%),
+      radial-gradient(600px 260px at 5% 20%,#fff4d6 0%,transparent 70%);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;}
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;color:var(--accent);
+    background:#fff0f3;border:1px solid #ffd7df;
+    padding:5px 12px;border-radius:999px;font-weight:600;
+  }
+  h1{
+    font-size:clamp(28px,4.4vw,44px);
+    line-height:1.22;font-weight:900;letter-spacing:-.5px;
+    margin:16px 0 14px;
+  }
+  .hero p.lead{font-size:16px;color:var(--muted);max-width:34em;}
+  .hero-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 22px;border-radius:12px;font-weight:700;font-size:15px;
+    transition:.2s;border:1px solid transparent;
+  }
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px -8px rgba(255,77,109,.7);}
+  .btn-primary:hover{background:#f03a5c;transform:translateY(-1px);}
+  .btn-ghost{background:#fff;border-color:var(--line);color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--ink);}
+  .btn[aria-disabled="true"]{opacity:.85;cursor:default;}
+  .hero-stats{display:flex;gap:26px;margin-top:30px;flex-wrap:wrap;}
+  .hero-stats div strong{display:block;font-size:20px;font-weight:800;}
+  .hero-stats div span{font-size:13px;color:var(--muted);}
+
+  /* Poster art */
+  .poster{
+    position:relative;border-radius:22px;overflow:hidden;
+    background:var(--ink);padding:18px;
+    box-shadow:0 24px 50px -24px rgba(25,21,43,.55);
+  }
+  .poster .screen{
+    border-radius:14px;overflow:hidden;background:#241d3a;
+  }
+  .poster .tag{
+    position:absolute;top:16px;right:16px;
+    background:var(--accent-2);color:var(--ink);
+    font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;
+  }
+
+  /* Sections */
+  section{padding:52px 0;}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px;flex-wrap:wrap;}
+  .sec-head h2{font-size:clamp(21px,2.6vw,27px);font-weight:900;letter-spacing:-.3px;}
+  .sec-head p{font-size:14px;color:var(--muted);max-width:38em;margin-top:6px;}
+  .sec-tag{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:1px;text-transform:uppercase;}
+
+  /* Genre chips */
+  .chips{display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{
+    display:flex;align-items:center;gap:8px;
+    background:#fff;border:1px solid var(--line);border-radius:999px;
+    padding:9px 16px;font-size:14px;font-weight:600;color:var(--ink-2);
+    transition:.2s;
+  }
+  .chip:hover{border-color:var(--accent);color:var(--accent);}
+  .chip .dot{width:7px;height:7px;border-radius:50%;background:var(--accent-2);}
+
+  /* Drama cards */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;display:flex;flex-direction:column;transition:.22s;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 18px 32px -22px rgba(25,21,43,.5);border-color:#d9d0c5;}
+  .card .cover{height:132px;position:relative;overflow:hidden;}
+  .card .cover svg{width:100%;height:100%;}
+  .card .badge{
+    position:absolute;left:12px;top:12px;font-size:11px;font-weight:800;
+    background:rgba(25,21,43,.82);color:#fff;padding:3px 9px;border-radius:999px;
+  }
+  .card .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .card h3{font-size:16.5px;font-weight:800;}
+  .card p{font-size:13.5px;color:var(--muted);line-height:1.7;}
+  .card .meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px;}
+  .card .meta a{font-weight:700;color:var(--accent);}
+
+  /* Ranking list */
+  .rank{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .rank-row{
+    display:grid;grid-template-columns:46px 1fr auto auto;gap:16px;align-items:center;
+    padding:15px 20px;border-bottom:1px solid var(--line);transition:.18s;
+  }
+  .rank-row:last-child{border-bottom:none;}
+  .rank-row:hover{background:#fffaf5;}
+  .rank-num{font-weight:900;font-size:17px;color:#c9c1b6;}
+  .rank-row:nth-child(1) .rank-num{color:var(--accent);}
+  .rank-row:nth-child(2) .rank-num{color:#e8a33d;}
+  .rank-row:nth-child(3) .rank-num{color:#b98a5c;}
+  .rank-title{font-weight:700;font-size:15px;}
+  .rank-genre{font-size:12.5px;color:var(--muted);}
+  .rank-heat{font-size:12.5px;color:var(--accent);font-weight:700;white-space:nowrap;}
+
+  /* Guide / two column */
+  .guide{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .guide-box{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;
+  }
+  .guide-box h3{font-size:17px;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:9px;}
+  .guide-box h3 .ic{width:26px;height:26px;border-radius:8px;background:#fff0f3;display:grid;place-items:center;}
+  .guide-box ol,.guide-box ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .guide-box li{font-size:14px;color:var(--ink-2);display:flex;gap:10px;line-height:1.7;}
+  .guide-box li b{color:var(--accent);flex:0 0 auto;}
+  .guide-box p{font-size:14px;color:var(--muted);line-height:1.8;}
+  .guide-box p + p{margin-top:10px;}
+
+  /* Article prose */
+  .prose{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;}
+  .prose h2{font-size:22px;font-weight:900;margin-bottom:14px;}
+  .prose h3{font-size:16.5px;font-weight:800;margin:22px 0 8px;}
+  .prose p{font-size:14.5px;color:#443d54;line-height:1.9;margin-bottom:10px;}
+  .prose strong{color:var(--ink);}
+
+  /* CTA band */
+  .band{
+    background:var(--ink);color:#fff;border-radius:22px;padding:40px 34px;
+    display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;
+    background-image:radial-gradient(420px 200px at 88% 0%,rgba(255,209,102,.22),transparent 70%);
+  }
+  .band h2{font-size:clamp(20px,2.6vw,26px);font-weight:900;letter-spacing:-.3px;}
+  .band p{font-size:14px;color:#c9c2dd;margin-top:8px;max-width:36em;}
+
+  /* Footer */
+  footer.site{border-top:1px solid var(--line);padding:36px 0 46px;margin-top:20px;background:#fff;}
+  .foot-grid{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+  .foot-brand{max-width:34em;}
+  .foot-brand p{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.8;}
+  .foot-links{display:flex;gap:40px;flex-wrap:wrap;}
+  .foot-links h4{font-size:13px;font-weight:800;margin-bottom:10px;}
+  .foot-links a{display:block;font-size:13px;color:var(--muted);padding:3px 0;}
+  .foot-links a:hover{color:var(--accent);}
+  .copyright{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:#9a939f;}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:32px;}
+    .cards{grid-template-columns:repeat(2,1fr);}
+    .guide{grid-template-columns:1fr;}
+  }
+  @media (max-width:640px){
+    .head-inner{min-height:auto;padding:12px 0;gap:12px;}
+    nav.main{margin-left:0;width:100%;order:3;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;}
+    nav.main a{white-space:nowrap;padding:6px 10px;}
+    .hero{padding:36px 0 30px;}
+    .cards{grid-template-columns:1fr;}
+    section{padding:38px 0;}
+    .rank-row{grid-template-columns:34px 1fr auto;gap:10px;padding:13px 16px;}
+    .rank-genre{display:none;}
+    .band{padding:30px 22px;}
+    .prose{padding:22px;}
+    .hero-stats{gap:20px;}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap head-inner">
+    <a class="logo" href="#top" aria-label="91短剧网页版 首页">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="11" height="14" rx="2" fill="#ff4d6d"/><path d="M16 8l5 4-5 4z" fill="#ffd166"/></svg>
+      </span>
+      91短剧网页版
+    </a>
+    <nav class="main" aria-label="主导航">
+      <a href="#genres">短剧分类</a>
+      <a href="#hot">热门推荐</a>
+      <a href="#rank">热播榜</a>
+      <a href="#guide">观看指南</a>
+      <a href="#about">关于平台</a>
+      <a class="nav-cta" href="#hot">开始追剧</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="kicker">浏览器直接打开 · 无需安装客户端</span>
+        <h1>91短剧网页版</h1>
+        <p class="lead">把零散时间交给一集短剧。91短剧网页版按题材整理都市、甜宠、逆袭、悬疑等常见短剧方向，提供剧集速览、榜单推荐与在线观看入口，打开浏览器即可浏览当前可看的短剧内容。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#hot">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            浏览热门短剧
+          </a>
+          <a class="btn btn-ghost" href="#genres">按题材找剧</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>四大</strong><span>常见短剧题材分区</span></div>
+          <div><strong>每集数分钟</strong><span>适合碎片时间观看</span></div>
+          <div><strong>网页直达</strong><span>手机与电脑同一入口</span></div>
+        </div>
+      </div>
+
+      <div class="poster" aria-hidden="true">
+        <span class="tag">正在热播</span>
+        <div class="screen">
+          <svg viewBox="0 0 400 300" role="img" aria-label="短剧播放界面示意图">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#3a2f5c"/><stop offset="1" stop-color="#19152b"/>
+              </linearGradient>
+              <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ff4d6d"/><stop offset="1" stop-color="#c92a4b"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="300" fill="url(#g1)"/>
+            <circle cx="322" cy="58" r="46" fill="#ffd166" opacity="0.18"/>
+            <rect x="34" y="52" width="86" height="118" rx="8" fill="url(#g2)"/>
+            <rect x="34" y="52" width="86" height="118" rx="8" fill="none" stroke="#ffffff" stroke-opacity="0.2"/>
+            <rect x="132" y="72" width="118" height="12" rx="6" fill="#ffffff" opacity="0.85"/>
+            <rect x="132" y="96" width="160" height="9" rx="4.5" fill="#ffffff" opacity="0.35"/>
+            <rect x="132" y="114" width="132" height="9" rx="4.5" fill="#ffffff" opacity="0.25"/>
+            <rect x="132" y="140" width="64" height="22" rx="11" fill="#ffd166"/>
+            <rect x="34" y="196" width="332" height="1" fill="#ffffff" opacity="0.12"/>
+            <rect x="34" y="214" width="72" height="52" rx="7" fill="#ffffff" opacity="0.12"/>
+            <rect x="116" y="214" width="72" height="52" rx="7" fill="#ffffff" opacity="0.12"/>
+            <rect x="198" y="214" width="72" height="52" rx="7" fill="#ffffff" opacity="0.12"/>
+            <rect x="280" y="214" width="72" height="52" rx="7" fill="#ffffff" opacity="0.12"/>
+            <circle cx="200" cy="176" r="17" fill="#ffffff" opacity="0.9"/>
+            <path d="M195 168l13 8-13 8z" fill="#19152b"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Genres -->
+  <section id="genres">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="sec-tag">按题材浏览</span>
+          <h2>短剧分类入口</h2>
+          <p>短剧题材集中，先确定想看的类型再挑剧，比盲目翻找更省时间。以下分区覆盖91短剧网页版常见的浏览方向。</p>
+        </div>
+      </div>
+      <div class="chips">
+        <a class="chip" href="#hot"><span class="dot"></span>都市生活</a>
+        <a class="chip" href="#hot"><span class="dot"></span>甜宠恋爱</a>
+        <a class="chip" href="#hot"><span class="dot"></span>逆袭爽剧</a>
+        <a class="chip" href="#hot"><span class="dot"></span>悬疑推理</a>
+        <a class="chip" href="#hot"><span class="dot"></span>古装权谋</a>
+        <a class="chip" href="#hot"><span class="dot"></span>家庭伦理</a>
+        <a class="chip" href="#hot"><span class="dot"></span>职场成长</a>
+        <a class="chip" href="#hot"><span class="dot"></span>青春校园</a>
+        <a class="chip" href="#hot"><span class="dot"></span>奇幻脑洞</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hot cards -->
+  <section id="hot">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="sec-tag">编辑精选</span>
+          <h2>热门短剧推荐</h2>
+          <p>按偏好的观看感受挑选，而不是只追单一题材。每张卡片标注类型与适合的观看节奏，方便快速决定先看哪一部。</p>
+        </div>
+        <a class="btn btn-ghost" href="#rank">查看完整榜单</a>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="cover">
+            <span class="badge">都市 · 逆袭</span>
+            <svg viewBox="0 0 400 160" aria-hidden="true"><rect width="400" height="160" fill="#f3e6df"/><path d="M0 120l400-70v110H0z" fill="#e2c7bb"/><circle cx="320" cy="44" r="26" fill="#ff4d6d" opacity="0.55"/><rect x="42" y="52" width="110" height="12" rx="6" fill="#19152b" opacity="0.8"/><rect x="42" y="76" width="168" height="8" rx="4" fill="#19152b" opacity="0.25"/></svg>
+          </div>
+          <div class="body">
+            <h3>小人物翻身记</h3>
+            <p>从被轻视到站稳脚跟的都市逆袭线，节奏明快，前几集就完成情绪反转，适合一次连看多集。</p>
+            <div class="meta"><span>每集 2–3 分钟</span><a href="#hot">查看剧集</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="cover">
+            <span class="badge">甜宠 · 恋爱</span>
+            <svg viewBox="0 0 400 160" aria-hidden="true"><rect width="400" height="160" fill="#ffe6ec"/><circle cx="120" cy="80" r="46" fill="#ffb3c6" opacity="0.7"/><circle cx="270" cy="70" r="34" fill="#ff4d6d" opacity="0.35"/><rect x="200" y="104" width="140" height="10" rx="5" fill="#19152b" opacity="0.2"/><rect x="200" y="124" width="90" height="10" rx="5" fill="#19152b" opacity="0.12"/></svg>
+          </div>
+          <div class="body">
+            <h3>心动三十日</h3>
+            <p>以短暂相处为线索的轻甜故事，情节集中在日常互动，适合睡前放松时逐集看完。</p>
+            <div class="meta"><span>每集 2 分钟</span><a href="#hot">查看剧集</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="cover">
+            <span class="badge">悬疑 · 推理</span>
+            <svg viewBox="0 0 400 160" aria-hidden="true"><rect width="400" height="160" fill="#22203a"/><circle cx="300" cy="46" r="30" fill="#ffd166" opacity="0.5"/><path d="M0 130l140-54 120 40 140-52v96H0z" fill="#12101f"/><rect x="40" y="44" width="96" height="10" rx="5" fill="#ffffff" opacity="0.6"/><rect x="40" y="64" width="140" height="8" rx="4" fill="#ffffff" opacity="0.22"/></svg>
+          </div>
+          <div class="body">
+            <h3>第七封来信</h3>
+            <p>围绕一封来历不明的信件展开，线索逐集累积，建议按顺序观看，避免错过关键细节。</p>
+            <div class="meta"><span>每集 3–4 分钟</span><a href="#hot">查看剧集</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="cover">
+            <span class="badge">古装 · 权谋</span>
+            <svg viewBox="0 0 400 160" aria-hidden="true"><rect width="400" height="160" fill="#efe4cf"/><path d="M0 130l120-70 120 54 160-64v110H0z" fill="#d8c4a4"/><rect x="60" y="34" width="54" height="54" rx="6" fill="#ff4d6d" opacity="0.5"/><rect x="132" y="48" width="120" height="10" rx="5" fill="#19152b" opacity="0.7"/><rect x="132" y="68" width="96" height="8" rx="4" fill="#19152b" opacity="0.22"/></svg>
+          </div>
+          <div class="body">
+            <h3>宫墙之下的棋局</h3>
+            <p>人物关系复杂，剧情依靠对话推进。适合喜欢慢慢琢磨台词与立场的观众。</p>
+            <div class="meta"><span>每集 3 分钟</span><a href="#hot">查看剧集</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="cover">
+            <span class="badge">家庭 · 伦理</span>
+            <svg viewBox="0 0 400 160" aria-hidden="true"><rect width="400" height="160" fill="#e8eef1"/><rect x="36" y="72" width="70" height="66" rx="6" fill="#c3d2da"/><rect x="122" y="46" width="86" height="92" rx="6" fill="#9fb4c0"/><rect x="224" y="88" width="60" height="50" rx="6" fill="#c3d2da"/><circle cx="320" cy="52" r="24" fill="#ffd166" opacity="0.8"/></svg>
+          </div>
+          <div class="body">
+            <h3>屋檐下的选择</h3>
+            <p>聚焦家庭内部的分歧与和解，剧情贴近日常，适合与家人一起边看边聊。</p>
+            <div class="meta"><span>每集 3 分钟</span><a href="#hot">查看剧集</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="cover">
+            <span class="badge">奇幻 · 脑洞</span>
+            <svg viewBox="0 0 400 160" aria-hidden="true"><rect width="400" height="160" fill="#2b2a4a"/><circle cx="90" cy="60" r="38" fill="#ff4d6d" opacity="0.45"/><circle cx="230" cy="100" r="52" fill="#ffd166" opacity="0.28"/><circle cx="340" cy="40" r="20" fill="#ffffff" opacity="0.5"/><rect x="40" y="120" width="120" height="8" rx="4" fill="#ffffff" opacity="0.3"/></svg>
+          </div>
+          <div class="body">
+            <h3>交换人生的一天</h3>
+            <p>设定鲜明，用一集讲清一个反转。适合想换换口味、不想追长线的观众。</p>
+            <div class="meta"><span>每集 2–3 分钟</span><a href="#hot">查看剧集</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ranking -->
+  <section id="rank">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="sec-tag">观看热度</span>
+          <h2>短剧热播榜</h2>
+          <p>榜单按近期浏览与观看情况整理，题材、节奏与集数一并列出，便于在有限时间里挑到合适的剧。</p>
+        </div>
+      </div>
+      <div class="rank" role="list">
+        <div class="rank-row" role="listitem">
+          <span class="rank-num">01</span>
+          <span class="rank-title">小人物翻身记</span>
+          <span class="rank-genre">都市 · 逆袭</span>
+          <span class="rank-heat">热度上升</span>
+        </div>
+        <div class="rank-row" role="listitem">
+          <span class="rank-num">02</span>
+          <span class="rank-title">心动三十日</span>
+          <span class="rank-genre">甜宠 · 恋爱</span>
+          <span class="rank-heat">持续在榜</span>
+        </div>
+        <div class="rank-row" role="listitem">
+          <span class="rank-num">03</span>
+          <span class="rank-title">第七封来信</span>
+          <span class="rank-genre">悬疑 · 推理</span>
+          <span class="rank-heat">讨论较多</span>
+        </div>
+        <div class="rank-row" role="listitem">
+          <span class="rank-num">04</span>
+          <span class="rank-title">宫墙之下的棋局</span>
+          <span class="rank-genre">古装 · 权谋</span>
+          <span class="rank-heat">新剧上榜</span>
+        </div>
+        <div class="rank-row" role="listitem">
+          <span class="rank-num">05</span>
+          <span class="rank-title">屋檐下的选择</span>
+          <span class="rank-genre">家庭 · 伦理</span>
+          <span class="rank-heat">口碑稳定</span>
+        </div>
+        <div class="rank-row" role="listitem">
+          <span class="rank-num">06</span>
+          <span class="rank-title">交换人生的一天</span>
+          <span class="rank-genre">奇幻 · 脑洞</span>
+          <span class="rank-heat">短篇优选</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guide -->
+  <section id="guide">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="sec-tag">使用说明</span>
+          <h2>在91短剧网页版怎么看剧</h2>
+          <p>网页版省去安装步骤，重点是找到入口、选对题材、按顺序观看。以下几点把常见操作一次说清。</p>
+        </div>
+      </div>
+      <div class="guide">
+        <div class="guide-box">
+          <h3><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="#ff4d6d" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg></span>三步开始观看</h3>
+          <ol>
+            <li><b>1</b>从导航进入短剧分类或热门推荐，先确定想看的题材。</li>
+            <li><b>2</b>打开剧集页查看简介与集数，确认节奏是否符合预期。</li>
+            <li><b>3</b>从第一集顺序播放，悬疑类尤其不建议跳集。</li>
+          </ol>
+        </div>
+        <div class="guide-box">
+          <h3><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="#ff4d6d" aria-hidden="true"><path d="M12 2l2.4 6.9H22l-6 4.6 2.3 7-6.3-4.5-6.3 4.5 2.3-7-6-4.6h7.6z"/></svg></span>挑选短剧的几种思路</h3>
+          <ul>
+            <li><b>·</b>时间紧就选单集两分钟左右的都市、甜宠题材，一口气看几集不费力。</li>
+            <li><b>·</b>想有回味可选悬疑、权谋，线索藏在台词和细节里，值得慢看。</li>
+            <li><b>·</b>不确定口味时，先从热播榜前几位试看一集，再决定是否追下去。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prose about -->
+  <section id="about">
+    <div class="wrap">
+      <div class="prose">
+        <h2>关于91短剧网页版</h2>
+        <p><strong>91短剧网页版</strong>面向习惯用浏览器看剧的观众。相比需要下载安装的应用，网页版的优势是打开即用：在手机、平板或电脑的浏览器中输入入口，就能浏览短剧分类、查看剧集简介并进入播放页。对于只想利用通勤、午休这类零散时间看两集的人，这种轻量方式更省心。</p>
+        <p>短剧与传统长剧的差别，主要在于叙事密度和观看节奏。单集时长通常只有几分钟，剧情推进会更快，冲突和反转安排得更集中。因此在91短剧网页版挑剧时，先看题材再看节奏，往往比只看标题更有效。都市逆袭类重情绪释放，甜宠类重互动氛围，悬疑类重线索铺陈，同一题材下的剧集差异也可能很大。</p>
+
+        <h3>内容组织方式</h3>
+        <p>页面把内容分成三层：分类入口负责缩小范围，热门推荐负责给出可选项，热播榜负责反映近期关注度。三者相互配合，读者可以先按题材筛选，再从推荐卡片中比较简介和单集时长，最后用榜单确认哪些剧集讨论度更高。这样的顺序减少了反复跳转，也让选择过程更有依据。</p>
+
+        <h3>观看时需要注意的细节</h3>
+        <p>短剧集数多、单集短，容易出现看到一半找不到进度的情况。建议在开始一部新剧时先记住剧名与集数，看完一段后回到剧集页继续，避免顺序错乱。悬疑、权谋类作品信息密度高，跳集容易漏掉伏笔；而甜宠、都市类相对独立，偶尔跳看影响不大。至于播放是否流畅，与当时的网络状况和设备有关，遇到卡顿时切换网络或刷新页面通常可以缓解。</p>
+
+        <h3>适合哪些观众</h3>
+        <p>如果你喜欢节奏明快、单集信息量集中的内容，短剧会比长剧更合适；如果你习惯完整铺陈的长篇叙事，也可以把短剧当作换口味的补充。91短剧网页版适合前者，也适合想先试看一两集再决定是否深入了解的观众。所有内容以页面实际展示为准，剧集更新与可看范围会随时间变化，浏览时以当前页面信息为参考。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <section>
+    <div class="wrap">
+      <div class="band">
+        <div>
+          <h2>现在就从91短剧网页版开始</h2>
+          <p>先选一个题材，再从热播榜里挑一部试看第一集。无需注册安装，浏览器打开即可浏览当前短剧内容。</p>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a class="btn btn-primary" href="#hot">进入热门推荐</a>
+          <a class="btn btn-ghost" href="#genres" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.35);">浏览全部分类</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="#top">
+          <span class="mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="11" height="14" rx="2" fill="#ff4d6d"/><path d="M16 8l5 4-5 4z" fill="#ffd166"/></svg>
+          </span>
+          91短剧网页版
+        </a>
+        <p>91短剧网页版是一个短剧主题浏览入口，按题材整理剧集、提供推荐与榜单，帮助观众用更短的时间找到想看的短剧内容。</p>
+      </div>
+      <div class="foot-links">
+        <div>
+          <h4>浏览</h4>
+          <a href="#genres">短剧分类</a>
+          <a href="#hot">热门推荐</a>
+          <a href="#rank">热播榜</a>
+        </div>
+        <div>
+          <h4>帮助</h4>
+          <a href="#guide">观看指南</a>
+          <a href="#about">关于平台</a>
+          <a href="#top">返回顶部</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">© 2024 91短剧网页版 · 页面内容以实际展示为准，剧集信息随更新变化。</div>
+  </div>
+</footer>
+
+</body>
+                  </html>
