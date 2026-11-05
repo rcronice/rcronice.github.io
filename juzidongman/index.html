@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>橘子动漫-橘子动漫在线观看_新番动画追更与番剧推荐</title>
+<meta name="description" content="橘子动漫是一个面向动画爱好者的追番站点介绍页，围绕橘子动漫整理新番追更、番剧分类推荐、观看路径与常见问题，帮助访问者快速了解橘子动漫的内容组织与使用方式。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='34' r='22' fill='%23ff8a3d'/%3E%3Cpath d='M32 12c2 6 8 9 14 8-3 6-9 9-14 8-5 1-11-2-14-8 6 1 12-2 14-8z' fill='%232f9e5f'/%3E%3Ccircle cx='24' cy='32' r='4' fill='%23fff'/%3E%3Ccircle cx='40' cy='32' r='4' fill='%23fff'/%3E%3Cpath d='M24 42c5 4 11 4 16 0' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --orange:#ff8a3d;
+  --orange-deep:#e2671a;
+  --green:#2f9e5f;
+  --ink:#20242b;
+  --ink-soft:#4b5563;
+  --line:#f0e4d8;
+  --paper:#fffaf4;
+  --card:#ffffff;
+  --radius:16px;
+  --shadow:0 10px 30px rgba(226,103,26,.09);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px;}
+
+/* 页头 */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,250,244,.94);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;min-height:66px;flex-wrap:wrap;
+}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:.5px;}
+.logo .mark{width:36px;height:36px;flex:0 0 36px;}
+.logo span.brand{color:var(--ink);}
+.logo span.brand em{font-style:normal;color:var(--orange-deep);}
+.nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+.nav a{
+  font-size:14.5px;color:var(--ink-soft);padding:7px 12px;border-radius:999px;
+  transition:.2s;white-space:nowrap;
+}
+.nav a:hover,.nav a:focus-visible{background:#ffeede;color:var(--orange-deep);}
+.nav a.cta{
+  background:var(--orange);color:#fff;font-weight:600;box-shadow:0 6px 16px rgba(255,138,61,.3);
+}
+.nav a.cta:hover{background:var(--orange-deep);color:#fff;}
+
+/* 首屏 */
+.hero{
+  position:relative;overflow:hidden;
+  padding:56px 0 48px;
+  background:
+    radial-gradient(900px 380px at 88% -10%, #ffe6cf 0%, rgba(255,230,207,0) 70%),
+    radial-gradient(600px 300px at 6% 110%, #e6f6ec 0%, rgba(230,246,236,0) 70%);
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:600;color:var(--orange-deep);
+  background:#fff;border:1px solid #ffd9bb;border-radius:999px;
+  padding:5px 14px;margin-bottom:18px;
+}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;}
+h1{
+  font-size:clamp(28px,4.4vw,46px);
+  line-height:1.22;margin:0 0 18px;letter-spacing:-.5px;font-weight:800;
+}
+h1 .accent{color:var(--orange-deep);}
+.hero p.lead{
+  font-size:16.5px;color:var(--ink-soft);margin:0 0 26px;max-width:34em;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 24px;border-radius:999px;font-weight:600;font-size:15px;
+  transition:.2s;border:1px solid transparent;
+}
+.btn-primary{background:var(--orange);color:#fff;box-shadow:0 10px 22px rgba(255,138,61,.32);}
+.btn-primary:hover{background:var(--orange-deep);}
+.btn-ghost{background:#fff;border-color:#f1e0d0;color:var(--ink);}
+.btn-ghost:hover{border-color:var(--orange);color:var(--orange-deep);}
+.btn[aria-disabled="true"]{opacity:.85;cursor:default;}
+.hero-stats{display:flex;gap:28px;margin-top:30px;flex-wrap:wrap;}
+.hero-stats div strong{display:block;font-size:22px;color:var(--orange-deep);line-height:1.3;}
+.hero-stats div span{font-size:13px;color:var(--ink-soft);}
+.hero-art{
+  background:#fff;border:1px solid var(--line);border-radius:24px;
+  padding:22px;box-shadow:var(--shadow);
+}
+.hero-art figcaption{font-size:13px;color:var(--ink-soft);margin-top:12px;text-align:center;}
+
+/* 通用区块 */
+section{padding:52px 0;}
+.section-head{max-width:640px;margin-bottom:30px;}
+.section-head h2{
+  font-size:clamp(21px,2.6vw,28px);margin:0 0 10px;font-weight:800;letter-spacing:-.3px;
+}
+.section-head p{margin:0;color:var(--ink-soft);font-size:15.5px;}
+.tag{
+  display:inline-block;font-size:12.5px;font-weight:700;color:var(--green);
+  letter-spacing:1px;margin-bottom:8px;
+}
+
+/* 卡片网格 */
+.grid{display:grid;gap:18px;}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+.grid-2{grid-template-columns:repeat(2,1fr);}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;transition:.2s;box-shadow:0 4px 14px rgba(226,103,26,.04);
+}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#f8d3b4;}
+.card h3{font-size:17px;margin:0 0 8px;font-weight:700;}
+.card p{margin:0;font-size:14.5px;color:var(--ink-soft);}
+.card .num{
+  font-size:12px;font-weight:800;color:var(--orange-deep);
+  background:#fff1e4;border-radius:8px;padding:3px 9px;display:inline-block;margin-bottom:12px;
+}
+
+/* 追更列表 */
+.schedule{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);}
+.schedule-row{
+  display:grid;grid-template-columns:100px 1fr auto;gap:16px;align-items:center;
+  padding:16px 22px;border-bottom:1px solid #f8efe6;
+}
+.schedule-row:last-child{border-bottom:0;}
+.schedule-row .day{
+  font-size:13px;font-weight:700;color:var(--orange-deep);background:#fff1e4;
+  border-radius:8px;text-align:center;padding:6px 4px;
+}
+.schedule-row .title{font-size:15px;font-weight:600;}
+.schedule-row .title small{display:block;font-weight:400;color:var(--ink-soft);font-size:13px;margin-top:2px;}
+.schedule-row .state{
+  font-size:12.5px;color:var(--green);background:#eaf7ef;border-radius:999px;padding:4px 12px;white-space:nowrap;
+}
+.schedule-row .state.wait{color:#a0670f;background:#fff6e0;}
+
+/* 检索区 */
+.tools{
+  background:linear-gradient(135deg,#fff6ec,#ffffff 60%);
+  border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:var(--shadow);
+}
+.tools-label{font-size:14px;font-weight:700;margin-bottom:12px;}
+.tools-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.tools-bar input[type="search"]{
+  flex:1 1 240px;min-width:0;padding:11px 16px;border-radius:999px;
+  border:1px solid #eeddcd;background:#fff;font-size:15px;color:var(--ink);font-family:inherit;
+}
+.tools-bar input[type="search"]:focus{outline:2px solid #ffd0a8;border-color:var(--orange);}
+.chips{display:flex;gap:8px;flex-wrap:wrap;}
+.chip{
+  font-family:inherit;font-size:13.5px;padding:6px 15px;border-radius:999px;cursor:pointer;
+  border:1px solid #f1ddc9;background:#fff;color:var(--ink-soft);transition:.18s;
+}
+.chip:hover{border-color:var(--orange);color:var(--orange-deep);}
+.chip[aria-pressed="true"]{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:600;}
+.results{margin-top:18px;display:grid;gap:10px;}
+.result-item{
+  background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 16px;
+  font-size:14.5px;display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap;
+}
+.result-item span.meta{font-size:12.5px;color:var(--ink-soft);}
+.empty{font-size:14px;color:var(--ink-soft);padding:8px 0;}
+
+/* 正文长段落 */
+.prose{max-width:760px;}
+.prose p{margin:0 0 16px;font-size:15.5px;color:#39414b;}
+.prose p:last-child{margin-bottom:0;}
+.split{display:grid;grid-template-columns:1.25fr .75fr;gap:34px;align-items:start;}
+.aside-box{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;
+}
+.aside-box h3{font-size:16px;margin:0 0 12px;}
+.aside-box ul{margin:0;padding-left:18px;color:var(--ink-soft);font-size:14.5px;}
+.aside-box li{margin-bottom:8px;}
+.aside-box li:last-child{margin-bottom:0;}
+
+/* FAQ */
+.faq{display:grid;gap:12px;}
+details{
+  background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px;
+}
+details[open]{border-color:#f8d3b4;box-shadow:var(--shadow);}
+summary{
+  cursor:pointer;font-weight:700;font-size:15.5px;list-style:none;
+  display:flex;justify-content:space-between;gap:12px;align-items:center;
+}
+summary::-webkit-details-marker{display:none;}
+summary::after{content:"+";color:var(--orange-deep);font-size:20px;line-height:1;font-weight:700;}
+details[open] summary::after{content:"–";}
+details p{margin:12px 0 0;font-size:14.5px;color:var(--ink-soft);}
+
+/* CTA 收束 */
+.final-cta{
+  background:linear-gradient(135deg,#ff8a3d,#ff6f3c 55%,#e2671a);
+  border-radius:24px;padding:40px 32px;color:#fff;text-align:center;
+  box-shadow:0 18px 40px rgba(226,103,26,.25);
+}
+.final-cta h2{margin:0 0 12px;font-size:clamp(20px,2.6vw,27px);font-weight:800;}
+.final-cta p{margin:0 auto 24px;max-width:36em;font-size:15px;color:#fff2e6;}
+.final-cta .btn-primary{background:#fff;color:var(--orange-deep);box-shadow:none;}
+.final-cta .btn-primary:hover{background:#fff3e7;}
+.final-cta .btn-ghost{background:transparent;border-color:rgba(255,255,255,.6);color:#fff;}
+.final-cta .btn-ghost:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.12);}
+
+/* 页尾 */
+.site-footer{
+  border-top:1px solid var(--line);background:#fff;padding:34px 0 28px;margin-top:8px;
+}
+.footer-inner{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.footer-brand{max-width:320px;}
+.footer-brand .logo{font-size:17px;margin-bottom:10px;}
+.footer-brand p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+.footer-links{display:flex;gap:44px;flex-wrap:wrap;}
+.footer-links h4{font-size:13.5px;margin:0 0 10px;color:var(--ink);}
+.footer-links a{display:block;font-size:13.5px;color:var(--ink-soft);margin-bottom:6px;}
+.footer-links a:hover{color:var(--orange-deep);}
+.copyright{
+  margin-top:26px;padding-top:18px;border-top:1px solid #f7ede3;
+  font-size:12.5px;color:#8b929c;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+}
+
+@media (max-width:900px){
+  .hero-grid,.split{grid-template-columns:1fr;}
+  .grid-3{grid-template-columns:1fr 1fr;}
+  .hero-art{order:-1;}
+  section{padding:42px 0;}
+}
+@media (max-width:640px){
+  body{font-size:15.5px;}
+  .header-inner{min-height:auto;padding:12px 0;gap:10px;}
+  .nav{gap:2px;}
+  .nav a{padding:6px 9px;font-size:13.5px;}
+  .hero{padding:34px 0 38px;}
+  .grid-3,.grid-2{grid-template-columns:1fr;}
+  .schedule-row{grid-template-columns:1fr;gap:8px;padding:14px 18px;}
+  .schedule-row .day{display:inline-block;width:auto;padding:4px 12px;justify-self:start;}
+  .schedule-row .state{justify-self:start;}
+  .hero-stats{gap:20px;}
+  .final-cta{padding:30px 20px;}
+  .footer-links{gap:28px;}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="#top" aria-label="橘子动漫首页">
+      <svg class="mark" viewBox="0 0 64 64" role="img" aria-hidden="true">
+        <circle cx="32" cy="35" r="21" fill="#ff8a3d"/>
+        <path d="M32 13c2 6 8 9 14 8-3 6-9 9-14 8-5 1-11-2-14-8 6 1 12-2 14-8z" fill="#2f9e5f"/>
+        <circle cx="24" cy="33" r="3.6" fill="#fff"/>
+        <circle cx="40" cy="33" r="3.6" fill="#fff"/>
+        <path d="M24 43c5 4 11 4 16 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span class="brand">橘子动漫</span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#explore">内容分区</a>
+      <a href="#schedule">追更日程</a>
+      <a href="#find">快速查找</a>
+      <a href="#guide">观看指南</a>
+      <a href="#faq">常见问题</a>
+      <a href="#find" class="cta">开始浏览</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><i></i>动画追更 · 分季整理 · 观看引导</span>
+        <h1>橘子动漫</h1>
+        <p class="lead">橘子动漫面向喜欢动画的访问者，把新番追更、分季番剧与经典作品按主题归拢在一处，用清楚的日程和分类说明，减少找片时的来回翻找。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#find">按条件查找番剧</a>
+          <a class="btn btn-ghost" href="#schedule">查看本周追更</a>
+          <a class="btn btn-ghost" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1"
+             style="pointer-events:none">下载</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>4</strong><span>主题分区</span></div>
+          <div><strong>7</strong><span>每日追更位</span></div>
+          <div><strong>3</strong><span>筛选维度</span></div>
+        </div>
+      </div>
+      <figure class="hero-art">
+        <svg viewBox="0 0 360 240" role="img" aria-label="橘子动漫主题插画：放映屏与橘子瓣装饰">
+          <defs>
+            <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#fff3e6"/>
+              <stop offset="1" stop-color="#ffe0c4"/>
+            </linearGradient>
+          </defs>
+          <rect width="360" height="240" rx="18" fill="url(#screen)"/>
+          <rect x="46" y="38" width="212" height="132" rx="12" fill="#ffffff" stroke="#ffc79b" stroke-width="2"/>
+          <path d="M152 78v52l46-26z" fill="#ff8a3d"/>
+          <rect x="46" y="182" width="212" height="9" rx="4.5" fill="#ffd3ae"/>
+          <circle cx="286" cy="176" r="30" fill="#ff8a3d"/>
+          <path d="M286 148c2 5 7 8 12 7-3 5-8 8-12 7-4 1-9-2-12-7 5 1 10-2 12-7z" fill="#2f9e5f"/>
+          <path d="M279 172c4 3 10 3 14 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          <circle cx="278" cy="164" r="3" fill="#fff"/>
+          <circle cx="294" cy="164" r="3" fill="#fff"/>
+          <rect x="286" y="60" width="46" height="8" rx="4" fill="#ffc79b"/>
+          <rect x="286" y="78" width="34" height="8" rx="4" fill="#ffdfc4"/>
+        </svg>
+        <figcaption>橘子动漫 · 按主题分区组织番剧内容</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 内容分区 -->
+  <section id="explore">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">CONTENT</span>
+        <h2>橘子动漫的四个内容分区</h2>
+        <p>分区按观看目的划分，而不是按字母堆叠，方便你从一个入口进入后直接找到下一个想看的方向。</p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card">
+          <span class="num">01</span>
+          <h3>新番追更</h3>
+          <p>按周排布的更新位，标注播出日与当前状态，适合正在同步追更的访问者快速确认进度。</p>
+        </article>
+        <article class="card">
+          <span class="num">02</span>
+          <h3>分季番剧</h3>
+          <p>以季数为线索整理的作品集合，便于按季度回顾或补看，避免跨季剧情顺序混乱。</p>
+        </article>
+        <article class="card">
+          <span class="num">03</span>
+          <h3>经典补看</h3>
+          <p>适合集中补看的作品方向，侧重题材与篇幅说明，帮助判断是否值得投入时间。</p>
+        </article>
+        <article class="card">
+          <span class="num">04</span>
+          <h3>题材精选</h3>
+          <p>把日常、奇幻、竞技等题材分开陈列，用标签代替长篇推荐，便于按兴趣浏览。</p>
+        </article>
+        <article class="card">
+          <span class="num">05</span>
+          <h3>观看指南</h3>
+          <p>整理播放顺序、集数安排与常见观看顺序问题，减少因顺序错误造成的理解障碍。</p>
+        </article>
+        <article class="card">
+          <span class="num">06</span>
+          <h3>站点说明</h3>
+          <p>说明橘子动漫页面的组织方式与内容范围，让访问者在浏览前了解边界与使用方式。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 追更日程 -->
+  <section id="schedule">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">SCHEDULE</span>
+        <h2>本周追更日程示例</h2>
+        <p>日程以星期为行，标注状态便于区分已更新与等待中，是橘子动漫追更入口的主要呈现方式。</p>
+      </div>
+      <div class="schedule">
+        <div class="schedule-row">
+          <span class="day">周一</span>
+          <span class="title">日常题材单元<small>单集时长约 24 分钟，适合碎片时间</small></span>
+          <span class="state">已更新</span>
+        </div>
+        <div class="schedule-row">
+          <span class="day">周二</span>
+          <span class="title">奇幻冒险长线<small>剧情连贯，建议按顺序观看</small></span>
+          <span class="state">已更新</span>
+        </div>
+        <div class="schedule-row">
+          <span class="day">周三</span>
+          <span class="title">竞技成长线<small>以比赛推进，单季节奏紧凑</small></span>
+          <span class="state wait">等待更新</span>
+        </div>
+        <div class="schedule-row">
+          <span class="day">周四</span>
+          <span class="title">轻喜剧短篇<small>每集独立，可从任意一集进入</small></span>
+          <span class="state">已更新</span>
+        </div>
+        <div class="schedule-row">
+          <span class="day">周五</span>
+          <span class="title">科幻设定向<small>信息量大，适合安静观看</small></span>
+          <span class="state wait">等待更新</span>
+        </div>
+        <div class="schedule-row">
+          <span class="day">周六</span>
+          <span class="title">家庭向合家欢<small>时长灵活，适合与家人同看</small></span>
+          <span class="state">已更新</span>
+        </div>
+        <div class="schedule-row">
+          <span class="day">周日</span>
+          <span class="title">经典回顾档<small>老作品重看，按季整理</small></span>
+          <span class="state">已更新</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 查找工具 -->
+  <section id="find">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">SEARCH</span>
+        <h2>在橘子动漫快速查找番剧</h2>
+        <p>输入关键词或选择题材标签，结果会即时筛选。所有条目均直接写在页面中，无需跳转即可看到名称与说明。</p>
+      </div>
+      <div class="tools">
+        <div class="tools-label" id="searchLabel">搜索与筛选</div>
+        <div class="tools-bar">
+          <input type="search" id="q" aria-labelledby="searchLabel" placeholder="输入番剧名称或题材，如“奇幻”">
+        </div>
+        <div class="chips" role="group" aria-label="题材筛选">
+          <button class="chip" type="button" data-tag="全部" aria-pressed="true">全部</button>
+          <button class="chip" type="button" data-tag="日常" aria-pressed="false">日常</button>
+          <button class="chip" type="button" data-tag="奇幻" aria-pressed="false">奇幻</button>
+          <button class="chip" type="button" data-tag="竞技" aria-pressed="false">竞技</button>
+          <button class="chip" type="button" data-tag="科幻" aria-pressed="false">科幻</button>
+          <button class="chip" type="button" data-tag="经典" aria-pressed="false">经典</button>
+        </div>
+        <div class="results" id="results" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 指南正文 -->
+  <section id="guide">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">GUIDE</span>
+        <h2>怎么用橘子动漫安排一次完整的追番</h2>
+        <p>从确定观看目的开始，到安排每周时间，再到补看顺序，下面把流程拆成可以直接照做的几步。</p>
+      </div>
+      <div class="split">
+        <div class="prose">
+          <p>第一步是确定目的。如果你只想跟上当季更新，先从橘子动漫的追更日程进入，按自己有空闲的星期挑一到两部，避免一次排满导致中途放弃。如果你更想补完一部完整作品，则从分季番剧或经典补看进入，先看清季数与集数，再决定投入节奏。</p>
+          <p>第二步是核对顺序。同一部作品可能包含正篇、续作与特别篇，橘子动漫在分季条目中标注了季数线索，观看前确认先后关系，通常可以避免因跳看造成的剧情断裂。对剧情连贯的作品，按播出顺序观看是最稳妥的选择；对单元剧结构，从任意一集进入也不影响理解。</p>
+          <p>第三步是安排时间。单集时长多在二十余分钟，把追更固定在某个时间段，比随机点开更容易坚持。日程中标注的“已更新”与“等待更新”，可以帮助你把观看集中到内容齐全的日子，减少反复刷新的时间成本。</p>
+          <p>第四步是记录想看的作品。橘子动漫的分区与题材标签可以作为个人清单的参照，把感兴趣的方向先记下来，等有空闲时再按题材批量挑选，比在大量条目中逐条浏览更高效。</p>
+        </div>
+        <aside class="aside-box">
+          <h3>观看前可先确认的三件事</h3>
+          <ul>
+            <li>作品是否分季，当前想看的是第几季。</li>
+            <li>是连续剧情还是单元结构，能否跳看。</li>
+            <li>单集时长与总集数，是否匹配你的时间安排。</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">FAQ</span>
+        <h2>关于橘子动漫的常见问题</h2>
+        <p>以下问题围绕页面内容组织与使用方式，回答以站点当前呈现的信息为准。</p>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>橘子动漫主要提供什么内容？</summary>
+          <p>橘子动漫是一个动画主题的浏览页面，围绕新番追更、分季番剧、经典补看与题材精选组织信息，并提供查找与观看顺序方面的说明，帮助访问者更快确定想看什么、按什么顺序看。</p>
+        </details>
+        <details>
+          <summary>追更日程中的状态代表什么？</summary>
+          <p>日程按星期排列，标注“已更新”表示该条目本周已有内容可看，“等待更新”表示仍需等待。状态用于帮助安排观看时间，并不代表全集完结情况。</p>
+        </details>
+        <details>
+          <summary>不知道从哪部开始，应该怎么选？</summary>
+          <p>可以先在查找区选择题材标签，缩小范围后再看条目说明中的篇幅与结构描述。时间有限时，优先选择单元结构或集数较少的作品；想长期跟进，则从追更日程中挑一到两部即可。</p>
+        </details>
+        <details>
+          <summary>页面上的下载入口现在可以使用吗？</summary>
+          <p>下载入口目前处于占位状态，暂未开放实际下载，按钮已做禁用处理。后续开放时会在页面中更新入口信息。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 收束 CTA -->
+  <section>
+    <div class="wrap">
+      <div class="final-cta">
+        <h2>从橘子动漫的追更日程开始这一周</h2>
+        <p>先挑一个空闲的晚上，从日程里选一部已更新的作品。想找更多方向时，回到查找区按题材筛选，橘子动漫的分区会帮你把选择范围收窄。</p>
+        <div class="hero-actions" style="justify-content:center">
+          <a class="btn btn-primary" href="#schedule">查看追更日程</a>
+          <a class="btn btn-ghost" href="#explore">浏览内容分区</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg class="mark" viewBox="0 0 64 64" role="img" aria-hidden="true" style="width:30px;height:30px;flex:0 0 30px">
+            <circle cx="32" cy="35" r="21" fill="#ff8a3d"/>
+            <path d="M32 13c2 6 8 9 14 8-3 6-9 9-14 8-5 1-11-2-14-8 6 1 12-2 14-8z" fill="#2f9e5f"/>
+            <circle cx="24" cy="33" r="3.6" fill="#fff"/>
+            <circle cx="40" cy="33" r="3.6" fill="#fff"/>
+            <path d="M24 43c5 4 11 4 16 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+          <span class="brand">橘子动漫</span>
+        </div>
+        <p>橘子动漫以主题分区整理动画内容，提供追更日程、题材查找与观看顺序说明，帮助访问者更快找到想看的作品。</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h4>浏览</h4>
+          <a href="#explore">内容分区</a>
+          <a href="#schedule">追更日程</a>
+          <a href="#find">快速查找</a>
+        </div>
+        <div>
+          <h4>帮助</h4>
+          <a href="#guide">观看指南</a>
+          <a href="#faq">常见问题</a>
+          <a href="#top">返回顶部</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>橘子动漫 · 动画主题内容浏览页</span>
+      <span>页面信息以站点当前呈现为准</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var data = [
+    {name:"日常题材单元", tag:"日常", desc:"单集独立，适合碎片时间观看", meta:"单元结构 · 约24分钟/集"},
+    {name:"奇幻冒险长线", tag:"奇幻", desc:"剧情连贯，建议按季顺序观看", meta:"连续剧情 · 分季"},
+    {name:"竞技成长线", tag:"竞技", desc:"以比赛推进，单季节奏紧凑", meta:"连续剧情 · 单季"},
+    {name:"轻喜剧短篇", tag:"日常", desc:"每集独立，可从任意一集进入", meta:"单元结构 · 短篇"},
+    {name:"科幻设定向", tag:"科幻", desc:"信息量大，适合安静观看", meta:"连续剧情 · 设定密集"},
+    {name:"家庭向合家欢", tag:"日常", desc:"时长灵活，适合与家人同看", meta:"单元结构 · 合家欢"},
+    {name:"经典回顾档", tag:"经典", desc:"老作品重看，按季整理", meta:"分季 · 回顾"},
+    {name:"魔法学院篇", tag:"奇幻", desc:"世界观展开较慢，前几集需耐心", meta:"连续剧情 · 分季"},
+    {name:"未来城市线", tag:"科幻", desc:"以城市设定为核心，画面信息多", meta:"连续剧情 · 单季"},
+    {name:"校园竞技篇", tag:"竞技", desc:"训练与比赛交替，适合连看", meta:"连续剧情 · 单季"}
+  ];
+  var q = document.getElementById('q');
+  var results = document.getElementById('results');
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var activeTag = '全部';
+
+  function render(){
+    var kw = (q.value || '').trim().toLowerCase();
+    var list = data.filter(function(item){
+      var tagOk = activeTag === '全部' || item.tag === activeTag;
+      var kwOk = !kw || item.name.toLowerCase().indexOf(kw) > -1 || item.desc.toLowerCase().indexOf(kw) > -1 || item.tag.indexOf(kw) > -1;
+      return tagOk && kwOk;
+    });
+    if(!list.length){
+      results.innerHTML = '<p class="empty">没有匹配的条目，换个关键词或选择“全部”题材试试。</p>';
+      return;
+    }
+    results.innerHTML = list.map(function(item){
+      return '<div class="result-item"><span><strong>' + item.name + '</strong> · ' + item.desc +
+             '</span><span class="meta">' + item.tag + ' / ' + item.meta + '</span></div>';
+    }).join('');
+  }
+
+  chips.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      chips.forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+      btn.setAttribute('aria-pressed','true');
+      activeTag = btn.getAttribute('data-tag');
+      render();
+    });
+  });
+  q.addEventListener('input', render);
+  render();
+})();
+</script>
+
+</body>
+</html>
